@@ -1,29 +1,9 @@
-# rick
 
-This template should help get you started developing with Vue 3 in Vite.
+![Logo](https://upload.wikimedia.org/wikipedia/fr/c/c8/Rick_and_Morty_logo.png)
 
-## Recommended IDE Setup
+# Rick And Morty
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+[Github du projet](https://github.com/SebastienMerv/RickAndMorty)
 
-## Customize configuration
+[Site WEB du projet](https://rick.sebastienmerv.be)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
