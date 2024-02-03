@@ -186,4 +186,25 @@ div.modal-content {
     font-weight: bold;
     cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+    div.modal-content {
+        flex-direction: column;
+    }
+
+    .modal-content .perso {
+        margin-right: 0;
+    }
+
+    div.modal-content img {
+        height: 200px;
+        /* image cover */
+        object-fit: cover;
+    }
+
+    img {
+        width: 100%;
+    }
+
+}
 </style>
