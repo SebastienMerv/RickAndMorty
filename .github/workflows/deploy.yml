@@ -1,0 +1,35 @@
+# HOST = HOSTNAME
+# HOST_USERNAME = USERNAME
+# HOST_PASSWORD = PASSWORD
+# Connect to ssh server on push on master branch
+# Place the code source in /var/www/html/rickandmorty directory and npm install and build et restart apache
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run build
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{secrets.HOST}}
+        username: ${{secrets.HOST_USERNAME}}
+        key: ${{secrets.HOST_PASSWORD}}
+        script: |
+          cd /var/www/html/rickandmorty
+          npm install
+          npm run build
+          systemctl restart apache2
