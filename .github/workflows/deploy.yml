@@ -1,8 +1,3 @@
-# HOST = HOSTNAME
-# HOST_USERNAME = USERNAME
-# HOST_PASSWORD = PASSWORD
-# Connect to ssh server on push on master branch
-# Place the code source in /var/www/html/rickandmorty directory and npm install and build et restart apache
 name: Deploy
 on:
   push:
@@ -12,29 +7,42 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14
-    - name: Install dependencies
-      run: npm install
-    - name: Build
-      run: npm run build
-    - name: Deploy
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{secrets.HOST}}
-        username: ${{secrets.HOST_USERNAME}}
-        password: ${{secrets.HOST_PASSWORD}}
-        script: |
-          git reset --hard origin/master
-          if [ ! -d "/var/www/html/rickandmorty" ] ; then
-          git pull origin master
-          cd /var/www/html/rickandmorty
-          fi
-            git clone https://github.com/yourusername/yourrepo.git /var/www/html/rickandmorty
-          npm install
-          npm run build
-          systemctl restart apache2
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build
+        run: npm run build
+      
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.HOST_USERNAME }}
+          password: ${{ secrets.HOST_PASSWORD }}
+          script: |
+            cd /var/www/html/rickandmorty
+            
+            # S'assurer que le répertoire existe
+            if [ ! -d "/var/www/html/rickandmorty" ]; then
+              mkdir -p /var/www/html/rickandmorty
+            fi
+            
+            # Cloner le dépôt ou mettre à jour s'il existe déjà
+            git clone https://github.com/yourusername/yourrepo.git . || git pull
+            
+            # Installer les dépendances
+            npm install
+            
+            # Construire le projet
+            npm run build
+            
+            # Redémarrer Apache
+            systemctl restart apache2
