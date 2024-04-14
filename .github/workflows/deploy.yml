@@ -32,6 +32,5 @@ jobs:
           script: |
             rm /var/www/html/rickandmorty -R
             mkdir /var/www/html/rickandmorty
-            mkdir /var/www/html/rickandmorty/dist
-            scp -r dist /var/www/html/rickandmorty/dist
+            scp -r dist /var/www/html/rickandmorty
             
