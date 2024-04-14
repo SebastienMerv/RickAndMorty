@@ -31,9 +31,9 @@ jobs:
           password: ${{ secrets.HOST_PASSWORD }}
           script: |
             cd /var/www/html/rickandmorty
-            
             git fetch --all
             git reset --hard origin/master
             git pull origin master
-            npm install --production
+            npm install -g vite
+            npm install
             npm run build
