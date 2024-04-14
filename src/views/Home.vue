@@ -205,5 +205,6 @@ div.modal-content {
     img {
         width: 100%;
     }
+
 }
 </style>

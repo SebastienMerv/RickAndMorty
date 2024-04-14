@@ -8,6 +8,7 @@ const props = defineProps({
     },
 });
 
+
 const personnage = ref([]);
 
 onMounted(async () => {
@@ -16,13 +17,15 @@ onMounted(async () => {
     personnage.value = data;
 });
 
+
+
 </script>
 
 <template>
     <div class="card">
         <div class="card-body">
             <img :src="personnage.image" alt="image" />
-            <div class="hover-name">{{ personnage.name }}</div>
+            <h5 class="card-title">{{ personnage.name }}</h5>
             <p class="card-text">{{ personnage.description }}</p>
         </div>
     </div>
@@ -40,8 +43,6 @@ onMounted(async () => {
     align-items: center;
     margin: 10px;
     width: 200px;
-    position: relative; /* ajout de la position relative */
-
 }
 
 .card-body {
@@ -49,6 +50,11 @@ onMounted(async () => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .card-text {
@@ -61,32 +67,4 @@ img {
     height: 100%;
     object-fit: cover;
 }
-
-.hover-name {
-    display: none;
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-img:hover + .hover-name {
-    display: flex;
-    visibility: visible;
-}
-
-.hover-name:hover {
-    display: flex;
-    visibility: visible;
-}
-
 </style>
