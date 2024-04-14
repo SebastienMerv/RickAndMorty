@@ -30,19 +30,9 @@ jobs:
           script: |
             cd /var/www/html/rickandmorty
             
-            # S'assurer que le répertoire existe
-            if [ ! -d "/var/www/html/rickandmorty" ]; then
-              mkdir -p /var/www/html/rickandmorty
-            fi
-            
-            # Cloner le dépôt ou mettre à jour s'il existe déjà
-            git clone https://github.com/yourusername/yourrepo.git . || git pull
-            
-            # Installer les dépendances
+            git fetch --all
+            git reset --hard origin/master
+            git pull origin master
             npm install
-            
-            # Construire le projet
             npm run build
             
-            # Redémarrer Apache
-            systemctl restart apache2
