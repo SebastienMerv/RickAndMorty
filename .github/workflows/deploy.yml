@@ -29,9 +29,12 @@ jobs:
         username: ${{secrets.HOST_USERNAME}}
         password: ${{secrets.HOST_PASSWORD}}
         script: |
-          git fetch --all
           git reset --hard origin/master
+          if [ ! -d "/var/www/html/rickandmorty" ] ; then
+          git pull origin master
           cd /var/www/html/rickandmorty
+          fi
+            git clone https://github.com/yourusername/yourrepo.git /var/www/html/rickandmorty
           npm install
           npm run build
           systemctl restart apache2
