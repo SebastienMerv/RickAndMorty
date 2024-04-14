@@ -32,5 +32,5 @@ jobs:
           script: |
             rm /var/www/html/rickandmorty -R
             mkdir /var/www/html/rickandmorty
-            cp -r dist/* /var/www/html/rickandmorty
-            
+            # Copie du build qu'on viens de faire dans le dossier /var/www/html/rickandmorty
+            cp dist /var/www/html/rickandmorty
