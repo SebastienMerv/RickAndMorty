@@ -31,12 +31,6 @@ jobs:
           password: ${{ secrets.HOST_PASSWORD }}
           script: |
             rm /var/www/html/rickandmorty -R
-            # Clone the repository into /var/www/html/rickandmorty
-            git clone
-              --branch master
-              --depth 1
-            # Npm install
-            npm install
-            # Build
-            npm run build
+            # Push in the /var/www/html/rickandmorty/dist the build
+            scp -r dist /var/www/html/rickandmorty/dist
             
