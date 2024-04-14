@@ -31,6 +31,7 @@ jobs:
           password: ${{ secrets.HOST_PASSWORD }}
           script: |
             rm /var/www/html/rickandmorty -R
-            # Push in the /var/www/html/rickandmorty/dist the build
+            mkdir /var/www/html/rickandmorty
+            mkdir /var/www/html/rickandmorty/dist
             scp -r dist /var/www/html/rickandmorty/dist
             
